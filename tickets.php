@@ -1,5 +1,6 @@
 <?php
 
+ini_set('display_errors', 1);
 header("HTTP/1.1 200 OK");
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
@@ -42,7 +43,7 @@ switch($request_method) {
 
     default:// Invalid Request Method
         //header("HTTP/1.0 405 Method Not Allowed");
-        header("HTTP/1.1 200 OK");
+        //header("HTTP/1.1 200 OK");
         break;
 }
 
@@ -88,7 +89,7 @@ function addTicket() {
     $status = $_POST["status"];
     $color = $_POST["color"];
 
-    echo $query = "INSERT INTO postit(title, body, ActualPosition, status, color) VALUES('".$title."', '".$body."', '".$actualPosition."', '".$status."', '".$color."')";
+    $query = "INSERT INTO postit(title, body, ActualPosition, status, color) VALUES('".$title."', '".$body."', '".$actualPosition."', '".$status."', '".$color."')";
 
     if (mysqli_query($conn, $query)) $response = array('status' => 201, 'status_message' =>'product added');
     else $response = array('status' => 500, 'status_message' =>'error: '. mysqli_error($conn));
@@ -111,7 +112,7 @@ function updateTicket($id) {
     if (mysqli_query($conn, $query)) $response = array('status' => 200, 'status_message' => 'update done');
     else $response = array('status' => 500, 'status_message' =>'update canceled: '.mysqli_error($conn));
 
-    header('Content-Type: application/json');
+    //header('Content-Type: application/json');
     echo json_encode($response);
 }
 
@@ -122,7 +123,7 @@ function deleteTicket($id) {
     if (mysqli_query($conn, $query)) $response = array('status' => 200, 'status_message' =>'product deleted');
     else $response = array('status' => 500, 'status_message' =>'delete canceled: '.mysqli_error($conn));
 
-    header('Content-Type: application/json');
+    //header('Content-Type: application/json');
     echo json_encode($response);
 }
 

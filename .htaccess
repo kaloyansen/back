@@ -5,3 +5,6 @@ Header set Access-Control-Allow-Headers "append,delete,entries,foreach,get,has,k
 RewriteRule ^(.*)$ $1 [R=200,L]
 RewriteRule ^products/?$ products.php [NC,L]
 RewriteRule ^[^/]+/(\d+)$ products.php?id=$1
+
+php_flag display_errors 1
+
