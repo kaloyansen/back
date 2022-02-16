@@ -3,3 +3,5 @@ db_connect.php
 oldgit
 oldfiles
 /.htaccess
+.project
+.settings
