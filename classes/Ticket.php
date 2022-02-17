@@ -1,7 +1,13 @@
 <?php
 
-class Ticket {
+/********************************/
+/* code php by Kaloyan KRASTEV */
+/* kaloyansen@gmail.com       */
+/*****************************/
 
+class Ticket {/* classic
+                 ticket
+                 container */
     private $id;
     private $title;
     private $body;
@@ -24,29 +30,12 @@ class Ticket {
     public function getAP() { return $this->ActualPosition; }
     public function getStatus() { return $this->status; }
     public function getColor() { return $this->color; }
-    public function getProperties() {//array of properties
-        $reflectionClass = new ReflectionClass(get_class($this));
-        $array = array();
-        foreach ($reflectionClass->getProperties() as $property) {
-            $property->setAccessible(true);
-            $array[$property->getName()] = $property->getValue($this);
-            $property->setAccessible(false);
-        }
-        return $array;
-    }
-
-    public function setId($id) {
-        if (is_int(intval($id))) $this->id = $id; }
-    public function setTitle($title) {
-        if (is_string($title)) $this->title = $title; }
-    public function setBody($body) {
-        if (is_string($body)) $this->body = $body; }
-    public function setAP($ap) {
-        if (is_string($ap)) $this->ActualPosition = $ap; }
-    public function setStatus($status) {
-        if (is_string($status)) $this->status = $status; }
-    public function setColor($color) {
-        if (is_string($color)) $this->color = $color; }
+    public function setId($id) { if (is_int(intval($id))) $this->id = $id; }
+    public function setTitle($title) { if (is_string($title)) $this->title = $title; }
+    public function setBody($body) { if (is_string($body)) $this->body = $body; }
+    public function setAP($ap) { if (is_string($ap)) $this->ActualPosition = $ap; }
+    public function setStatus($status) { if (is_string($status)) $this->status = $status; }
+    public function setColor($color) { if (is_string($color)) $this->color = $color; }
 }
 
 ?>

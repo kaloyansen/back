@@ -1,15 +1,16 @@
 <?php
 
-$THISFILE = "./connexion.json";
-class DBManager {
-    /********************************/
-    /* code php by Kaloyan KRASTEV */
-    /* kaloyansen@gmail.com       */
-    /*****************************/
+/********************************/
+/* code php by Kaloyan KRASTEV */
+/* kaloyansen@gmail.com       */
+/*****************************/
 
-    /* usage: secret connexion to a database in two lines
+$JSONFILE = "./connexion.json";
+
+class DBManager {
+    /* usage: secret connexion to the database in two lines:
     $dbm = new DBManager(<initfile>);
-    $connexion = $dbm->call();//connexion à la base de données
+    $connexion = $dbm->call();//connexion à la base de données,
 
     // where <initfile> is the name of the file
     // with information for the identification
@@ -33,7 +34,6 @@ class DBManager {
     private $database;
     private $conn;
     private $ok;
-    //private $initfile;
 
     public function __construct($infile) { $this->initFrom($infile); }
     public function call() {
@@ -44,8 +44,8 @@ class DBManager {
     }
 
     private function export() {
-        global $THISFILE;      
-        file_put_contents($THISFILE, print_r(json_encode($this->getPropArray($this->conn)), true));
+        global $JSONFILE;      
+        file_put_contents($JSONFILE, print_r(json_encode(DBManager::getPropArray($this->conn)), true));
         return $this->conn;
     }
 
@@ -63,14 +63,11 @@ class DBManager {
 
     private function connexion() {
 
-        $this->conn = mysqli_connect($this->server,
-                                     $this->username,
-                                     $this->password,
-                                     $this->database);
+        $this->conn = mysqli_connect($this->server, $this->username, $this->password, $this->database);
         return $this->error() ? $this->error() : $this->conn;
     }
 
-    private function getPropArray($objet) {//array of properties
+    public static function getPropArray($objet) {//array of properties
         $reflectionClass = new ReflectionClass(get_class($objet));
         $array = array();
         foreach ($reflectionClass->getProperties() as $property) {

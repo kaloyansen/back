@@ -9,7 +9,6 @@ $request_method = empty($_SERVER["REQUEST_METHOD"]) ?
                 "GET" : $_SERVER["REQUEST_METHOD"];
 $request_id = empty($_GET["id"]) ?
         11 : intval($_GET["id"]);
-
 $request_body = json_decode(file_get_contents('php://input'));
 $request_body = validateRequestBody($request_body);
 
@@ -72,7 +71,7 @@ function getTicket($id) {//GET => $TM->select($id);
     global $man, $table;
 
     if (!$id) return success($man->count().' tickets in '.$table);
-    if ($ticket = $man->select($id)) return success('got ticket '.$id, 200, $ticket->getProperties());
+    if ($ticket = $man->select($id)) return success('got ticket '.$id, 200, DBManager::getPropArray($ticket));
     return badId($id);
 }
 

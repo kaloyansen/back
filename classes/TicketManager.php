@@ -1,7 +1,14 @@
 <?php
-include('classes/Ticket.php');
-class TicketManager {
 
+/********************************/
+/* code php by Kaloyan KRASTEV */
+/* kaloyansen@gmail.com       */
+/*****************************/
+
+include('classes/Ticket.php');
+class TicketManager {/* backend
+                        database
+                        interface */
     private $conn;//la connexion à la base de donnée
     private $tab;//le nom du tableau dans la base de donnée
     private function setTable($table) { $this->tab = $table; }

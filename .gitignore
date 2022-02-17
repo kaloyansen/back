@@ -5,3 +5,5 @@ oldfiles
 .htaccess
 .project
 .settings/
+.buildpath
+.vscode/
