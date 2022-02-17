@@ -2,39 +2,52 @@
 include('classes/Ticket.php');
 class TicketManager {
 
-    private $conn;
-    public function __construct($conn) { $this->setConnexion($conn); }
+    private $conn;//la connexion à la base de donnée
+    private $tab;//le nom du tableau dans la base de donnée
+    private function setTable($table) { $this->tab = $table; }
     private function setConnexion($conn) { $this->conn = $conn; }
+    private function error() { return mysqli_error($this->conn); }
+
+    public function __construct($conn, $table) {
+
+        $this->setConnexion($conn);
+        $this->setTable($table);
+    }
 
     public function count() {
-        $result = mysqli_query($this->conn, "SELECT * FROM postit");
-        if ($result) return mysqli_num_rows($result);
-        return 0;
+
+        $query = "SELECT * FROM ".$this->tab;
+        if ($result = mysqli_query($this->conn, $query))
+            return mysqli_num_rows($result);
+        else return $this->error();
     }
 
     public function select($id) {
-        $result = mysqli_query($this->conn, "SELECT * FROM postit WHERE id=".$id);
-        if ($result) {
-            $fobj = mysqli_fetch_object($result);//$array = mysqli_fetch_array($result);
-            if ($fobj) return new Ticket($fobj);
-        }
+
+        $query = "SELECT * FROM ".$this->tab." WHERE id=".$id;
+        if ($result = mysqli_query($this->conn, $query))
+            if ($mfobj = mysqli_fetch_object($result))
+                return new Ticket($mfobj, $id);
+
         return false;
     }
 
     public function insert(Ticket $ticket) {
-        return mysqli_query($this->conn, "INSERT INTO postit(title, body, ActualPosition, status, color) VALUES('".$ticket->getTitle()."', '".$ticket->getBody()."', '".$ticket->getAP()."', '".$ticket->getStatus()."', '".$ticket->getColor()."')");
+
+        $query = "INSERT INTO ".$this->tab."(title, body, ActualPosition, status, color) VALUES('".$ticket->getTitle()."', '".$ticket->getBody()."', '".$ticket->getAP()."', '".$ticket->getStatus()."', '".$ticket->getColor()."')";
+        return mysqli_query($this->conn, $query);
     }
 
     public function update($id, Ticket $ticket) {
-        if (mysqli_query($this->conn, "UPDATE postit SET title='".$ticket->getTitle()."', body='".$ticket->getBody()."', ActualPosition='".$ticket->getAP()."', status='".$ticket->getStatus()."', color='".$ticket->getColor()."' WHERE id=".$id))
-            return true;
-        return false;
+
+        $query = "UPDATE ".$this->tab." SET title='".$ticket->getTitle()."', body='".$ticket->getBody()."', ActualPosition='".$ticket->getAP()."', status='".$ticket->getStatus()."', color='".$ticket->getColor()."' WHERE id=".$id;
+        return mysqli_query($this->conn, $query);
     }
 
     public function delete($id) {
-        if (mysqli_query($this->conn, "DELETE FROM postit WHERE id=".$id))
-            return true;
-        return false;
+
+        $query = "DELETE FROM ".$this->tab." WHERE id=".$id;
+        return mysqli_query($this->conn, $query);
     }
 
 }
