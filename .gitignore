@@ -1,8 +1,7 @@
-/.idea
-.db
+/.db
 db_connect.php
 oldgit
 oldfiles
 .htaccess
 .project
-/.settings
+.settings/
