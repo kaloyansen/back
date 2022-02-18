@@ -1,1 +1,1 @@
-gh-pages/README.md
+docs/index.md
