@@ -1,10 +1,6 @@
 /.db
-db_connect.php
-oldgit
-oldfiles
-gh-pages/
 .htaccess
 .project
 .settings/
 .buildpath
-.vscode/
+db_connect.php
