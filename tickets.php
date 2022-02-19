@@ -120,7 +120,7 @@ function addTicket($body) {//POST
         'message' => 'bad add request body'
     );
     global $conn;
-    $query = "INSERT INTO postit(title, body, ActualPosition, status, color) VALUES('".$body->title."', '".$body->body."', '".$body->actualPosition."', '".$body->status."', '".$body->color."')";
+    $query = "INSERT INTO postit(title, body, position, status, color) VALUES('".$body->title."', '".$body->body."', '".$body->position."', '".$body->status."', '".$body->color."')";
     if (mysqli_query($conn, $query)) $response = array(
         'status' => 201,
         'message' =>'product added'
@@ -145,7 +145,7 @@ function updateTicket($id, $body) {//PUT
     );
 
     global $conn;
-    $query = "UPDATE postit SET title='".$body->title."', body='".$body->body."', ActualPosition='".$body->actualPosition."', status='".$body->status."', color='".$body->color."' WHERE id=".$id;
+    $query = "UPDATE postit SET title='".$body->title."', body='".$body->body."', position='".$body->position."', status='".$body->status."', color='".$body->color."' WHERE id=".$id;
     if (mysqli_query($conn, $query)) $response = array(
         'status' => 202,
         'message' => 'update done id = '.$id
@@ -182,7 +182,7 @@ function deleteTicket($id) {//DELETE
 }
 
 function validateRequestBody($body) {
-    if (!isset($body->title) || !isset($body->body) || !isset($body->actualPosition) || !isset($body->status) || !isset($body->color)) return false;
+    if (!isset($body->title) || !isset($body->body) || !isset($body->position) || !isset($body->status) || !isset($body->color)) return false;
     return $body;
 }
 

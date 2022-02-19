@@ -1,7 +1,7 @@
 # application programming interface representational state transfer backend 
 
 #### envirenmet => object oriented php 
-### subject **ticket** (<ins>id</ins>, title, body, position, status, color)[pve]
+### subject **ticket** (<ins>id</ins>, title, body, position, status, color)
 
 ### request method => action => operation(argument)
 ### get => download ticket => select($id)

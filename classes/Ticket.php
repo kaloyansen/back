@@ -11,7 +11,7 @@ class Ticket {/* classic
     private $id;
     private $title;
     private $body;
-    private $ActualPosition;
+    private $position;
     private $status;
     private $color;
 
@@ -19,7 +19,7 @@ class Ticket {/* classic
         if ($id) $this->setId($id);
         $this->setTitle($body->title);
         $this->setBody($body->body);
-        $this->setAP($body->ActualPosition);
+        $this->setPosition($body->position);
         $this->setStatus($body->status);
         $this->setColor($body->color);
     }
@@ -27,13 +27,13 @@ class Ticket {/* classic
     public function getId() { return $this->id; }
     public function getTitle() { return $this->title; }
     public function getBody() { return $this->body; }
-    public function getAP() { return $this->ActualPosition; }
+    public function getPosition() { return $this->position; }
     public function getStatus() { return $this->status; }
     public function getColor() { return $this->color; }
     public function setId($id) { if (is_int(intval($id))) $this->id = $id; }
     public function setTitle($title) { if (is_string($title)) $this->title = $title; }
     public function setBody($body) { if (is_string($body)) $this->body = $body; }
-    public function setAP($ap) { if (is_string($ap)) $this->ActualPosition = $ap; }
+    public function setPosition($position) { if (is_string($position)) $this->position = $position; }
     public function setStatus($status) { if (is_string($status)) $this->status = $status; }
     public function setColor($color) { if (is_string($color)) $this->color = $color; }
 }

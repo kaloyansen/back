@@ -15,7 +15,7 @@ CREATE TABLE postit (
     `id` int NOT NULL AUTO_INCREMENT,
     `title` varchar(255) NOT NULL,
     `body`  text(255) NOT NULL,
-    `ActualPosition` varchar(255) NOT NULL,
+    `position` varchar(255) NOT NULL,
     `status` varchar(255) NOT NULL,
     `color` varchar(255) NOT NULL,
     primary key (id)

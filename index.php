@@ -6,9 +6,9 @@
 /* request investigation */
 
 $request_method = empty($_SERVER["REQUEST_METHOD"]) ?
-                "GET" : $_SERVER["REQUEST_METHOD"];
+                false : $_SERVER["REQUEST_METHOD"];
 $request_id = empty($_GET["id"]) ?
-        11 : intval($_GET["id"]);
+     false : intval($_GET["id"]);
 $request_body = json_decode(file_get_contents('php://input'));
 $request_body = validateRequestBody($request_body);
 
@@ -133,7 +133,7 @@ function success($message, $status = 200, $body = false) {
 function validateRequestBody($body) {
     if (!isset($body->title)) return false;
     elseif (!isset($body->body)) return false;
-    elseif (!isset($body->actualPosition)) return false;
+    elseif (!isset($body->position)) return false;
     elseif (!isset($body->status)) return false;
     elseif (!isset($body->color)) return false;
     return $body;
