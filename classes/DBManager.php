@@ -38,8 +38,9 @@ class DBManager {
 
     public function __construct($infile) { $this->initFrom($infile); }
     public function get() { return $this->conn; }
-    public function call() {
-
+    public function close() { echo "\n"; mysqli_close($this->conn); }
+    public function open() {
+            
         $this->ok = $this->connexion() == $this->error() ? false : true;
         if (!$this->ok) $this->reconnexion();//hypotetic
         return $this->export();

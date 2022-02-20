@@ -2,25 +2,33 @@
 
 class Client {
 
-    private $manager;
-    public function getManager() { return $this->manager; }
-    public function setManager($man) { $this->manager = $man; }
+    private static $manager;
+    protected $req_met;
+    protected $req_id;
+    protected $req_body;
 
-    public static function success($message, $status = 200, $body = false) {
+    protected static function setManager($man) { self::$manager = $man; }
+    protected static function getManager() { return self::$manager; }
+    public function getMethod() { return $this->req_met; }
+    protected function getId() { return $this->req_id; }
+    protected function getBody() { return $this->req_body; }
+
+    protected static function success($message, $status = 200, $body = false) {
+
         $arr = array('status' => $status, 'message' => 'success '.$message);
         if ($body) $arr["body"] = $body;
         return $arr;
     }
     
-    public static function badId($id) {
+    protected static function badId($id) {
         return array('status' => 404, 'message' => 'no ticket id '.$id);
     }
     
-    public static function badRequest($message) {
+    protected static function badRequest($message) {
         return array('status' => 400, 'message' => 'bad request '.$message);
     }
     
-    public static function queryError($error) {
+    protected static function queryError($error) {
         return array('status' => 500, 'message' => 'query error', 'error' => $error);
     }
     
@@ -29,15 +37,11 @@ class Client {
         echo json_encode($repo);
     }
 
-    public static function validateRequestBody($body) {
-        $ok = true;
-        if (!$body) $ok = false;
-        elseif (!isset($body->title)) $ok = false;
-        elseif (!isset($body->body)) $ok = false;
-        elseif (!isset($body->position)) $ok = false;
-        elseif (!isset($body->status)) $ok = false;
-        elseif (!isset($body->color)) $ok = false;
-        return $ok ? $body : false;
+    public function headerMethod($origin = "*", $contentype = "application/json; charset=UTF-8") {
+        header('Access-Contol-Allow-Origin: '.$origin);
+        header('Content-Type: '.$contentype);
+        header('Access-Contol-Allow-Methods: '.$this->getMethod());
+        header('Access-Contol-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type, Authorization, x-Requestet-With');
     }
 
 }

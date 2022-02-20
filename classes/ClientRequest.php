@@ -3,21 +3,14 @@
 include_once 'classes/Client.php';
 class ClientRequest extends Client {
 
-    private $req_met;
-    private $req_id;
-    private $req_body;
-
-    public function getMethod() { return $this->req_met; }
-    public function getId() { return $this->req_id; }
-    public function getBody() { return $this->req_body; }
-    public function __construct() {
+    public function __construct($man) {
+        $this->setManager($man);
         $this->req_met = empty($_SERVER["REQUEST_METHOD"]) ?
                          false : $_SERVER["REQUEST_METHOD"];
         if ($this->req_met) {
             $this->req_id = empty($_GET["id"]) ?
                             false : intval($_GET["id"]);
             $this->req_body = json_decode(file_get_contents('php://input'));
-            //if (!$this->req_body) $this->req_body = false;
             $this->req_body = $this->validateRequestBody($this->req_body);
         } else {
             $this->clientIsTerminal();
@@ -38,13 +31,6 @@ class ClientRequest extends Client {
             'status' => substr(str_shuffle($wordlet), 0, $wordlen),
             'color' => substr(str_shuffle($wordlet), 0, $wordlen)
         );
-    }
-
-    public function headerMethod($origin = "*", $contentype = "application/json; charset=UTF-8") {
-        header('Access-Contol-Allow-Origin: '.$origin);
-        header('Content-Type: '.$contentype);
-        header('Access-Contol-Allow-Methods: '.$this->getMethod());
-        header('Access-Contol-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type, Authorization, x-Requestet-With');
     }
 
     public function getTicket() {//GET => $TM->select($id);
@@ -94,6 +80,12 @@ class ClientRequest extends Client {
         elseif ($man->delete($id)) $reponse = Client::success('ticket '.$id.' deleted', 202);
         else $reponse = Client::queryError($man->error());
         return $reponse;
+    }
+
+    private static function validateRequestBody($body) {
+
+        if (!isset($body->title) || !isset($body->body) || !isset($body->position) || !isset($body->status) || !isset($body->color)) return false;
+        else return $body;
     }
 
 }
