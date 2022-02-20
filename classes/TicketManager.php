@@ -41,13 +41,13 @@ class TicketManager {/* backend
 
     public function insert(Ticket $ticket) {
 
-        $query = "INSERT INTO ".$this->tab."(title, body, ActualPosition, status, color) VALUES('".$ticket->getTitle()."', '".$ticket->getBody()."', '".$ticket->getAP()."', '".$ticket->getStatus()."', '".$ticket->getColor()."')";
+        $query = "INSERT INTO ".$this->tab."(title, body, position, status, color) VALUES('".$ticket->getTitle()."', '".$ticket->getBody()."', '".$ticket->getPosition()."', '".$ticket->getStatus()."', '".$ticket->getColor()."')";
         return mysqli_query($this->conn, $query);
     }
 
     public function update($id, Ticket $ticket) {
 
-        $query = "UPDATE ".$this->tab." SET title='".$ticket->getTitle()."', body='".$ticket->getBody()."', ActualPosition='".$ticket->getAP()."', status='".$ticket->getStatus()."', color='".$ticket->getColor()."' WHERE id=".$id;
+        $query = "UPDATE ".$this->tab." SET title='".$ticket->getTitle()."', body='".$ticket->getBody()."', position='".$ticket->getPosition()."', status='".$ticket->getStatus()."', color='".$ticket->getColor()."' WHERE id=".$id;
         return mysqli_query($this->conn, $query);
     }
 

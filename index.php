@@ -6,7 +6,7 @@
 /* request investigation */
 
 $request_method = empty($_SERVER["REQUEST_METHOD"]) ?
-                false : $_SERVER["REQUEST_METHOD"];
+               "POST" : $_SERVER["REQUEST_METHOD"];
 $request_id = empty($_GET["id"]) ?
      false : intval($_GET["id"]);
 $request_body = json_decode(file_get_contents('php://input'));

@@ -44,7 +44,7 @@ class DBManager {
     }
 
     private function export() {
-        global $JSONFILE;      
+        global $JSONFILE;
         file_put_contents($JSONFILE, print_r(json_encode(DBManager::getPropArray($this->conn)), true));
         return $this->conn;
     }
