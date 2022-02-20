@@ -4,7 +4,7 @@
 /* code php by Kaloyan KRASTEV */
 /* kaloyansen@gmail.com       */
 /*****************************/
-
+//namespace classes;
 class Ticket {/* classic
                  ticket
                  container */

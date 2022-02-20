@@ -2,14 +2,27 @@
 
 //ini_set('display_errors', 0);
 
-
 /* request investigation */
 
 $request_method = empty($_SERVER["REQUEST_METHOD"]) ?
-               "POST" : $_SERVER["REQUEST_METHOD"];
+                false : $_SERVER["REQUEST_METHOD"];
 $request_id = empty($_GET["id"]) ?
      false : intval($_GET["id"]);
 $request_body = json_decode(file_get_contents('php://input'));
+if (!$request_body) $request_body = false;
+
+if (!$request_method) {//terminal client
+    $request_method = strtoupper($argv[1]);
+    $request_id = $argv[2];
+    $request_body = (object) array(
+        'title' => 'terminal',
+        'body' => 'termibody',
+        'position' => 'terminal',
+        'status' => 'debug',
+        'color' => 'blacl'
+    );
+}
+
 $request_body = validateRequestBody($request_body);
 
 include("classes/DBManager.php");
@@ -60,9 +73,9 @@ switch($request_method) {
         headerMethod($request_method);
         http_response_code(405);
         echo json_encode(array('status' => 405, 'message' => 'request method ('.$request_method.') not authorized'));
-        echo "\n";
 }
 
+echo "\n";
 mysqli_close($conn);
 
 

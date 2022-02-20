@@ -5,6 +5,7 @@
 /* kaloyansen@gmail.com       */
 /*****************************/
 
+//namespace classes;
 $JSONFILE = "./connexion.json";
 
 class DBManager {

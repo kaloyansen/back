@@ -4,7 +4,7 @@
 /* code php by Kaloyan KRASTEV */
 /* kaloyansen@gmail.com       */
 /*****************************/
-
+//namespace classes;
 include('classes/Ticket.php');
 class TicketManager {/* backend
                         database
