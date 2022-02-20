@@ -37,6 +37,7 @@ class DBManager {
     private $ok;
 
     public function __construct($infile) { $this->initFrom($infile); }
+    public function get() { return $this->conn; }
     public function call() {
 
         $this->ok = $this->connexion() == $this->error() ? false : true;
@@ -51,7 +52,8 @@ class DBManager {
     }
 
     private function reconnexion() { $doNothing = true; }
-    private function error() { return $this->conn->connect_error; }
+    private function error() { return mysqli_error($this->conn); }
+    //private function error() { return $this->conn->connect_error; }
     private function initFrom($infile) {
 
         if ($handle = fopen($infile, 'r'))
