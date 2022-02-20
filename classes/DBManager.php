@@ -63,7 +63,10 @@ class DBManager {
 
     private function connexion() {
 
-        $this->conn = mysqli_connect($this->server, $this->username, $this->password, $this->database);
+        $this->conn = mysqli_connect($this->server,
+                                     $this->username,
+           /* actual connexion */    $this->password,
+                                     $this->database);
         return $this->error() ? $this->error() : $this->conn;
     }
 
