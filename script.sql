@@ -3,9 +3,9 @@ START TRANSACTION;
 -- ============================================================
 --   Suppression et création de la base de données 
 -- ============================================================
-DROP DATABASE IF EXISTS tickets;
-CREATE DATABASE tickets;
-USE tickets;
+DROP DATABASE IF EXISTS totobase;
+CREATE DATABASE totobase;
+USE totobase;
 
 -- ============================================================
 --   Création de la table                            
@@ -25,7 +25,13 @@ CREATE TABLE postit (
 --   Insertion des enregistrements
 -- ============================================================
 
-INSERT INTO postit VALUES (1, 'ceci est le 1er ticket', 'ticket créé via l\'API Rest', 'A faire', 'A faire', 'R');
-INSERT INTO postit VALUES (2, 'ceci est le 2ème ticket', '2 ème ticket créé via l\'API Rest', 'Fait', 'A tester', 'G');
+INSERT INTO postit VALUES (NULL, 'title1', 'created by an api rest', 'unknown', 'ok', 'red');
+INSERT INTO postit VALUES (NULL, 'title2', 'created by an api rest', 'unknown', 'happy', 'blue');
+INSERT INTO postit VALUES (NULL, 'title3', 'created by an api rest', 'unknown', 'sad', 'green');
+INSERT INTO postit VALUES (NULL, 'title4', 'created by an api rest', 'unknown', 'ok', 'white');
+INSERT INTO postit VALUES (NULL, 'title5', 'created by an api rest', 'unknown', 'ok', 'red');
+INSERT INTO postit VALUES (NULL, 'title6', 'created by an api rest', 'unknown', 'dead', 'black');
+INSERT INTO postit VALUES (NULL, 'title7', 'created by an api rest', 'unknown', 'ok', 'red');
+INSERT INTO postit VALUES (NULL, 'title8', 'created by an api rest', 'unknown', 'sick', 'blue');
 
 commit;
