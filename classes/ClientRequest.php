@@ -1,16 +1,15 @@
 <?php
 
-
 include_once 'classes/Client.php';
 class ClientRequest extends Client {
+
     private $req_met;
     private $req_id;
     private $req_body;
-    private $manager;
+
     public function getMethod() { return $this->req_met; }
     public function getId() { return $this->req_id; }
     public function getBody() { return $this->req_body; }
-    public function setManager($man) { $this->manager = $man; }
     public function __construct() {
         $this->req_met = empty($_SERVER["REQUEST_METHOD"]) ?
                          false : $_SERVER["REQUEST_METHOD"];
@@ -19,22 +18,10 @@ class ClientRequest extends Client {
                             false : intval($_GET["id"]);
             $this->req_body = json_decode(file_get_contents('php://input'));
             //if (!$this->req_body) $this->req_body = false;
-            $this->req_body = $this->validateRequestBody() ? $this->req_body : false;
+            $this->req_body = $this->validateRequestBody($this->req_body);
         } else {
             $this->clientIsTerminal();
         }
-    }
-
-    private function getManager() { return $this->manager; }
-    private function validateRequestBody() {
-        $ok = true;
-        if (!$this->req_body) $ok = false;
-        elseif (!isset($this->req_body->title)) $ok = false;
-        elseif (!isset($this->req_body->body)) $ok = false;
-        elseif (!isset($this->req_body->position)) $ok = false;
-        elseif (!isset($this->req_body->status)) $ok = false;
-        elseif (!isset($this->req_body->color)) $ok = false;
-        return $ok;
     }
 
     private function clientIsTerminal() {
