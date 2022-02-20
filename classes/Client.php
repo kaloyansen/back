@@ -7,6 +7,20 @@ class Client {
     protected $req_id;
     protected $req_body;
 
+    public function __construct($man) {
+        $this->setManager($man);
+        $this->req_met = empty($_SERVER["REQUEST_METHOD"]) ?
+        false : $_SERVER["REQUEST_METHOD"];
+        if ($this->req_met) {
+            $this->req_id = empty($_GET["id"]) ?
+            false : intval($_GET["id"]);
+            $this->req_body = json_decode(file_get_contents('php://input'));
+            $this->req_body = $this->validateRequestBody($this->req_body);
+        } else {
+            $this->clientIsTerminal();
+        }
+    }
+
     protected static function setManager($man) { self::$manager = $man; }
     protected static function getManager() { return self::$manager; }
     public function getMethod() { return $this->req_met; }
@@ -15,13 +29,20 @@ class Client {
 
     protected static function success($message, $status = 200, $body = false) {
 
-        $arr = array('status' => $status, 'message' => 'success '.$message);
+        $arr = array('status' => $status, 'message' => $message);
         if ($body) $arr["body"] = $body;
         return $arr;
     }
-    
+
     protected static function badId($id) {
         return array('status' => 404, 'message' => 'no ticket id '.$id);
+    }
+    
+    protected static function badMethod($method) {
+        return array(
+            'status' => 405,
+            'message' => 'request method ('.$method.') not authorized'
+        );
     }
     
     protected static function badRequest($message) {

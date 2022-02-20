@@ -3,21 +3,7 @@
 include_once 'classes/Client.php';
 class ClientRequest extends Client {
 
-    public function __construct($man) {
-        $this->setManager($man);
-        $this->req_met = empty($_SERVER["REQUEST_METHOD"]) ?
-                         false : $_SERVER["REQUEST_METHOD"];
-        if ($this->req_met) {
-            $this->req_id = empty($_GET["id"]) ?
-                            false : intval($_GET["id"]);
-            $this->req_body = json_decode(file_get_contents('php://input'));
-            $this->req_body = $this->validateRequestBody($this->req_body);
-        } else {
-            $this->clientIsTerminal();
-        }
-    }
-
-    private function clientIsTerminal() {
+    protected function clientIsTerminal() {
         global $argc, $argv;
         if ($argc < 2) die("usage: ".$argv[0]." method id\n");
         $this->req_met = $argv[1] ? strtoupper($argv[1]) : false;
@@ -80,6 +66,14 @@ class ClientRequest extends Client {
         elseif ($man->delete($id)) $reponse = Client::success('ticket '.$id.' deleted', 202);
         else $reponse = Client::queryError($man->error());
         return $reponse;
+    }
+
+    public function getOptions() {
+        return Client::success(['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']);
+    }
+
+    public function methodInvalid() {
+        return Client::badMethod($this->getMethod());
     }
 
     private static function validateRequestBody($body) {
