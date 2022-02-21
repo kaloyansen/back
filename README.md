@@ -1,10 +1,11 @@
-# application programming interface representational state rransfer 
+# application programming interface representational state transfer 
 - ## classes: 
-- ## DBManager
-- ## TicketManager
-- ## Ticket
-- ## Client
-- ## ClientRequest
+- ## Ticket - data container
+- ## TicketManager extends DBManager - database interface
+- ## DBManager - database manager
+- ## ClientRequest extends Client - client request analyse
+- ## Client - client response catalogue
+
 
 
 
