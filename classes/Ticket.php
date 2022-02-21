@@ -25,6 +25,11 @@ class Ticket {/* ticket
         $this->setColor($body->color);
     }
 
+    public function validation() { return isset($this->title) &&
+                                          isset($this->body) &&
+                                          isset($this->position) &&
+                                          isset($this->status) &&
+                                          isset($this->color); }
     public function getId() { return $this->id; }
     public function getTitle() { return $this->title; }
     public function getBody() { return $this->body; }
@@ -37,13 +42,7 @@ class Ticket {/* ticket
     public function setPosition($position) { if (is_string($position)) $this->position = $position; }
     public function setStatus($status) { if (is_string($status)) $this->status = $status; }
     public function setColor($color) { if (is_string($color)) $this->color = $color; }
-    public function validation() {
-        return isset($this->title) &&
-               isset($this->body) && 
-               isset($this->position) &&
-               isset($this->status) &&
-               isset($this->color);
-    }
+
 }
 
 ?>
