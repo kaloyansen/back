@@ -53,6 +53,6 @@ $manager->close();/* database deconnexion */
 ### &#128241; +33 6 812 44 812
 ### &#9793; 32 quai Xavier JOUVIN, 38000 Grenoble, FRANCE
 
-#### [&#128281;&#127383;](../.)
+#### [&#128281;&#127383;&#9940;](../.)
 
 
