@@ -19,9 +19,10 @@
 <!-- The below code snippet is automatically added from ./api.php -->
 ```php
 <?php
-/* php code by Kaloyan KRASTEV
-published at https://kaloyansen.github.io/back by MARKDOWN-AUTO-DOCS */
- 
+/************************************************************************/
+/* php code by Kaloyan KRASTEV, kaloyansen@gmail.com                    */
+/* published at https://kaloyansen.github.io/back by MARKDOWN-AUTO-DOCS */
+/************************************************************************/
 include_once("classes/ClientRequest.php");
 include_once('classes/TicketManager.php');
 
