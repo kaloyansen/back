@@ -35,8 +35,8 @@ $request = new \classes\ClientRequest($manager);
 /* client request to be managed by a TicketManager instance */
 
 $request->headerMethod();
-switch($request->getMethod()) {
-    /* request method dependant response */
+switch($request->getMethod()) {/* request method dependant response
+*/
     case 'OPTIONS': \classes\Client::send($request->getOptions()); break;
     case 'DELETE': \classes\Client::send($request->deleteTicket()); break;
     case 'POST': \classes\Client::send($request->addTicket()); break;
