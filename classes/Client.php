@@ -1,24 +1,34 @@
 <?php
 
-class Client {
+/********************************/
+/* code php by Kaloyan KRASTEV */
+/* kaloyansen@gmail.com       */
+/*****************************/
 
+namespace classes;
+
+class Client {/* client
+                 response
+                 catalogue */
     private static $manager;
     protected $req_met;
     protected $req_id;
     protected $req_body;
 
     public function __construct($man) {
+        //ini_set('display_errors', 0);
         $this->setManager($man);
         $this->req_met = empty($_SERVER["REQUEST_METHOD"]) ?
-        false : $_SERVER["REQUEST_METHOD"];
+                         false : $_SERVER["REQUEST_METHOD"];
         if ($this->req_met) {
             $this->req_id = empty($_GET["id"]) ?
-            false : intval($_GET["id"]);
+                            false : intval($_GET["id"]);
             $this->req_body = json_decode(file_get_contents('php://input'));
-            $this->req_body = $this->validateRequestBody($this->req_body);
         } else {
             $this->clientIsTerminal();
         }
+
+        $this->req_body = self::validateRequestBody($this->req_body);
     }
 
     protected static function setManager($man) { self::$manager = $man; }
@@ -37,22 +47,22 @@ class Client {
     protected static function badId($id) {
         return array('status' => 404, 'message' => 'no ticket id '.$id);
     }
-    
+
     protected static function badMethod($method) {
         return array(
             'status' => 405,
             'message' => 'request method ('.$method.') not authorized'
         );
     }
-    
+
     protected static function badRequest($message) {
         return array('status' => 400, 'message' => 'bad request '.$message);
     }
-    
+
     protected static function queryError($error) {
         return array('status' => 500, 'message' => 'query error', 'error' => $error);
     }
-    
+
     public static function send($repo) {
         http_response_code($repo['status']);
         echo json_encode($repo);
@@ -63,6 +73,11 @@ class Client {
         header('Content-Type: '.$contentype);
         header('Access-Contol-Allow-Methods: '.$this->getMethod());
         header('Access-Contol-Allow-Headers: Access-Control-Allow-Headers, Access-Control-Allow-Methods, Content-Type, Authorization, x-Requestet-With');
+    }
+
+    private static function validateRequestBody($body) {
+        if (!isset($body->title) || !isset($body->body) || !isset($body->position) || !isset($body->status) || !isset($body->color)) return false;
+        else return $body;
     }
 
 }

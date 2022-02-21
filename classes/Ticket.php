@@ -4,9 +4,10 @@
 /* code php by Kaloyan KRASTEV */
 /* kaloyansen@gmail.com       */
 /*****************************/
-//namespace classes;
-class Ticket {/* classic
-                 ticket
+
+namespace classes;
+
+class Ticket {/* ticket
                  container */
     private $id;
     private $title;
@@ -36,6 +37,10 @@ class Ticket {/* classic
     public function setPosition($position) { if (is_string($position)) $this->position = $position; }
     public function setStatus($status) { if (is_string($status)) $this->status = $status; }
     public function setColor($color) { if (is_string($color)) $this->color = $color; }
+    public function validation() {
+        if (!isset($this->title) || !isset($this->body) || !isset($this->position) || !isset($this->status) || !isset($this->color)) return false;
+        else return true;
+    }
 }
 
 ?>

@@ -5,13 +5,14 @@
 /* kaloyansen@gmail.com       */
 /*****************************/
 
-//namespace classes;
-$JSONFILE = "./connexion.json";
+namespace classes;
 
 class DBManager {
+
     /* usage: secret connexion to the database in two lines:
     $dbm = new DBManager(<initfile>);
-    $connexion = $dbm->call();//connexion à la base de données,
+    $connexion = $dbm->open();//connexion à la base de données,
+    $connexion = $dbm->close();//déconnexion de la base de données,
 
     // where <initfile> is the name of the file
     // with information for the identification
@@ -25,38 +26,37 @@ class DBManager {
 
     // ===============================> end of example
 
-    // warning! this information is not public
-    // keep <initfile> secret and put the name into .gitignore
     // end of usage -> begin code php */
 
     private $server;
     private $username;
     private $password;
     private $database;
-    private $conn;
-    private $ok;
 
+    private static $conn;
+    private static $iconn;
+    private static $jsonFile = "./connexion.json";
+    
     public function __construct($infile) { $this->initFrom($infile); }
-    public function get() { return $this->conn; }
-    public function close() { echo "\n"; mysqli_close($this->conn); }
+    public function get() { return self::$conn; }
+    public function close() { echo "\n"; mysqli_close(self::$conn); }
     public function open() {
-            
-        $this->ok = $this->connexion() == $this->error() ? false : true;
-        if (!$this->ok) $this->reconnexion();//hypotetic
+        $ok = $this->connexion() == $this->error() ? false : true;
+        if (!$ok) $this->reconnexion();//hypotetic
         return $this->export();
     }
 
     private function export() {
-        global $JSONFILE;
-        file_put_contents($JSONFILE, print_r(json_encode(DBManager::getPropArray($this->conn)), true));
-        return $this->conn;
+        file_put_contents(self::$jsonFile, print_r(json_encode(DBManager::getPropArray(self::$conn)), true));
+        return self::$conn;
     }
 
-    private function reconnexion() { $doNothing = true; }
-    private function error() { return mysqli_error($this->conn); }
+    private function reconnexion() { self::$iconn ++; }
+    private function error() { return mysqli_error(self::$conn); }
     //private function error() { return $this->conn->connect_error; }
     private function initFrom($infile) {
 
+        self::$iconn = 0;
         if ($handle = fopen($infile, 'r'))
             while ($data = fgetcsv($handle, 0, ":")) {
                 $property = trim($data[0]);
@@ -67,15 +67,15 @@ class DBManager {
 
     private function connexion() {
 
-        $this->conn = mysqli_connect($this->server,
+        self::$conn = mysqli_connect($this->server,
                                      $this->username,
            /* actual connexion */    $this->password,
                                      $this->database);
-        return $this->error() ? $this->error() : $this->conn;
+        return $this->error() ? $this->error() : self::$conn;
     }
 
     public static function getPropArray($objet) {//array of properties
-        $reflectionClass = new ReflectionClass(get_class($objet));
+        $reflectionClass = new \ReflectionClass(get_class($objet));
         $array = array();
         foreach ($reflectionClass->getProperties() as $property) {
             $property->setAccessible(true);
@@ -84,7 +84,7 @@ class DBManager {
         }
         return $array;
     }
-
+/*
     private function importValue($prop) {
         $lines = file($this->initfile);
         foreach($lines as $line) {
@@ -93,6 +93,7 @@ class DBManager {
         }
         return false;
     }
+*/
 }
 
 ?>
