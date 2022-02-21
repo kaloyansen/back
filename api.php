@@ -1,5 +1,7 @@
 <?php
 
+/* published by MARKDOWN-AUTO-DOCS */
+
 include_once("classes/ClientRequest.php");
 include_once('classes/TicketManager.php');
 
