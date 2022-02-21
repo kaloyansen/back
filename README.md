@@ -6,7 +6,13 @@
 - ## ClientRequest extends Client - client request analyse
 - ## Client - client response catalogue
 
-
+** data **
+- <ins>id</ins>,
+- title,
+- body,
+- position,
+- status,
+- color
 
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./api.php) -->
