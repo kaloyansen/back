@@ -48,6 +48,9 @@ $manager->close();/* database deconnexion */
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
+### &#9787; Kaloyan KRASTEV
 ### &#128241; +33 6 812 44 812
+### &#8982; 32 quai Xavier JOUVIN, 38000 Grenoble, FRANCE
+
 #### [&#128281;](../.)
 [&#8592;](../.)?📱[&#8592;](../.)
