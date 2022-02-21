@@ -21,9 +21,8 @@
 ## &#10050; TicketManager(query abstraction)
 ## &#9856; Ticket (data container)
 
-```php:api.php
 
-```
-
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=../api.php) -->
+<!-- MARKDOWN-AUTO-DOCS:END -->
 
 [back](../.)
