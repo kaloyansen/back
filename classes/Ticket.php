@@ -38,8 +38,11 @@ class Ticket {/* ticket
     public function setStatus($status) { if (is_string($status)) $this->status = $status; }
     public function setColor($color) { if (is_string($color)) $this->color = $color; }
     public function validation() {
-        if (!isset($this->title) || !isset($this->body) || !isset($this->position) || !isset($this->status) || !isset($this->color)) return false;
-        else return true;
+        return isset($this->title) &&
+               isset($this->body) && 
+               isset($this->position) &&
+               isset($this->status) &&
+               isset($this->color);
     }
 }
 
