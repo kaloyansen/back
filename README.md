@@ -48,4 +48,6 @@ $manager->close();/* database deconnexion */
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
+[&#128241;](+33 6 812 44 812)
 [&#8592;](../.)
+[&#8592;](../.)?📱[&#8592;](../.)
