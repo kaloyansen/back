@@ -21,4 +21,9 @@
 ## &#10050; TicketManager(query abstraction)
 ## &#9856; Ticket (data container)
 
+```php:../api.php
+
+```
+
+
 [back](../.)

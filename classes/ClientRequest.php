@@ -59,7 +59,7 @@ class ClientRequest extends \classes\Client {/* client
         else {
             $ticket = new \classes\Ticket($body);
             if (!$ticket->validation()) $reponse = self::badRequest("payload");
-            if ($man->update($id, $ticket)) $reponse = self::success('ticket '.$id.' updated', 205);
+            elseif ($man->update($id, $ticket)) $reponse = self::success('ticket '.$id.' updated', 205);
             else $reponse = self::queryError($man->error());
         }
 
