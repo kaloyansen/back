@@ -27,14 +27,14 @@ include_once("classes/ClientRequest.php");
 include_once('classes/TicketManager.php');
 
 $manager = new \classes\TicketManager("./.db");
-/* secrets are loaded from a local file */
-
+/* secrets are loaded from a local file
+*/
 $manager->setTable("postit");
-$manager->open();/* database connexion */
-
+$manager->open();/* database connexion
+*/
 $request = new \classes\ClientRequest($manager);
-/* client request to be managed by a TicketManager instance */
-
+/* client request to be managed by a TicketManager instance
+*/
 $request->headerMethod();
 switch($request->getMethod()) {/* request method dependant response
 */
@@ -46,7 +46,8 @@ switch($request->getMethod()) {/* request method dependant response
     default: \classes\Client::send($request->methodInvalid());
 }
 
-$manager->close();/* database deconnexion */
+$manager->close();/* database deconnexion
+*/
 ?>
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
