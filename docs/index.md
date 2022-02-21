@@ -22,7 +22,7 @@
 ## &#9856; Ticket (data container)
 
 
-<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=../api.php) -->
+<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=back/api.php) -->
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
 [back](../.)
