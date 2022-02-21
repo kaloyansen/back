@@ -47,3 +47,5 @@ $manager->close();/* database deconnexion */
 ?>
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
+
+[back](../.)
