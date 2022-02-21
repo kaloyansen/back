@@ -50,7 +50,7 @@ $manager->close();/* database deconnexion */
 
 ### &#9787; [Kaloyan KRASTEV](mailto:kaloyansen@gmail.com)
 ### &#128241; +33 6 812 44 812
-### &#8982; 32 quai Xavier JOUVIN, 38000 Grenoble, FRANCE
+### &#9793; 32 quai Xavier JOUVIN, 38000 Grenoble, FRANCE
 
 #### [&#128281;](../.)
 
