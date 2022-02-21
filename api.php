@@ -1,6 +1,7 @@
 <?php
 
-/* published at https://kaloyansen.github.io/back by MARKDOWN-AUTO-DOCS */
+/* published at https://kaloyansen.github.io/back by MARKDOWN-AUTO-DOCS
+php code by Kaloyan KRASTEV */
 
 include_once("classes/ClientRequest.php");
 include_once('classes/TicketManager.php');
