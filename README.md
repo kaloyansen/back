@@ -19,8 +19,8 @@
 <!-- The below code snippet is automatically added from ./api.php -->
 ```php
 <?php
-
-/* published by MARKDOWN-AUTO-DOCS */
+/* published at https://kaloyansen.github.io/back by MARKDOWN-AUTO-DOCS
+php code by Kaloyan KRASTEV */
 
 include_once("classes/ClientRequest.php");
 include_once('classes/TicketManager.php');
