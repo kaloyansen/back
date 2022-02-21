@@ -1,12 +1,12 @@
 # application programming interface representational state transfer 
 - ## classes: 
-- ## Ticket - data container
-- ## TicketManager extends DBManager - database interface
-- ## DBManager - database manager
+- ## Ticket - data container,
+- ## DBManager - database manager,
+- ## Client - client response catalogue,
+- ## TicketManager extends DBManager - database interface,
 - ## ClientRequest extends Client - client request analyse
-- ## Client - client response catalogue
 
-** data **
+### data
 - <ins>id</ins>,
 - title,
 - body,
@@ -48,7 +48,6 @@ $manager->close();/* database deconnexion */
 ```
 <!-- MARKDOWN-AUTO-DOCS:END -->
 
-[&#128241;](+33 6 812 44 812)
-[&#8592;](../.)
-[&#128281;](../.)
+### &#128241; +33 6 812 44 812
+#### [&#128281;](../.)
 [&#8592;](../.)?📱[&#8592;](../.)
