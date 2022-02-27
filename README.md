@@ -38,10 +38,10 @@ $request = new \classes\ClientRequest($manager);
 $request->headerMethod();
 switch($request->getMethod()) {/* request method dependant response
 */
-    case 'OPTIONS': $request::send($request->getOptions()); break;
-    case 'DELETE': $request::send($request->deleteTicket()); break;
-    case 'POST': $request::send($request->addTicket()); break;
-    case 'PUT': $request::send($request->updateTicket()); break;
+	case 'DELETE': $request::send($request->deleteTicket()); break;
+	case 'OPTIONS': $request::send($request->getOptions()); break;
+	case 'PUT': $request::send($request->updateTicket()); break;
+	case 'POST': $request::send($request->addTicket()); break;
     case 'GET': $request::send($request->getTicket()); break;
     default: $request::send($request->methodInvalid());
 }
