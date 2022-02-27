@@ -1,18 +1,11 @@
 # application programming interface representational state transfer 100% php
+- ## ticket: <ins>id</ins>, title, body, position, status, color
 - ## classes: 
 - ## Ticket - data container,
 - ## DBManager - database manager,
 - ## Client - client response catalogue,
 - ## TicketManager extends DBManager - database interface,
 - ## ClientRequest extends Client - client request analyse
-
-### data
-- <ins>id</ins>,
-- title,
-- body,
-- position,
-- status,
-- color
 
 
 <!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./api.php) -->
